@@ -1,16 +1,41 @@
-def detect_volume_spike(data):
+import pandas as pd
 
-    # extract the real volume column
-    volume = data["Volume"]
+def detect_volume_spike(data: pd.DataFrame) -> str:
+    """
+    Detect unusual volume spike in the last 5 days of stock data.
+    Returns a string signal.
+    """
 
-    # if pandas returns dataframe (multi index), convert to series
-    if hasattr(volume, "columns"):
-        volume = volume.iloc[:,0]
+    try:
+        # Ensure data is not empty
+        if data.empty:
+            return "No data fetched"
 
-    avg_volume = volume.mean()
-    latest_volume = volume.iloc[-1]
+        # Flatten MultiIndex if exists
+        if isinstance(data.columns, pd.MultiIndex):
+            # Pick the first 'Volume' column that matches
+            volume_cols = [col for col in data.columns if 'Volume' in col]
+            if not volume_cols:
+                return "Volume column not found"
+            volume = data[volume_cols[0]]
+        else:
+            if 'Volume' not in data.columns:
+                return "Volume column not found"
+            volume = data['Volume']
 
-    if latest_volume > 1.5 * avg_volume:
-        return "Volume Spike Detected"
-    else:
-        return "No unusual activity"
+        # Convert to numeric
+        volume = pd.to_numeric(volume, errors='coerce').dropna()
+
+        if len(volume) < 2:
+            return "Not enough volume data"
+
+        latest_volume = volume.iloc[-1]
+        avg_volume = volume.iloc[:-1].mean()
+
+        if latest_volume > 2 * avg_volume:
+            return "Volume spike detected"
+        else:
+            return "No unusual activity"
+
+    except Exception as e:
+        return f"Error: {str(e)}"

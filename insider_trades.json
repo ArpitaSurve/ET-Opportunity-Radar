@@ -1,0 +1,47 @@
+[
+  {
+    "action": "BUY",
+    "client_name": "ARIHANT CAPITAL MARKETS LIMITED",
+    "date": "24-MAR-2026",
+    "price": 305.29,
+    "quantity": 865468,
+    "security_name": "Agi Infra Limited",
+    "symbol": "AGIIL"
+  },
+  {
+    "action": "BUY",
+    "client_name": "AFFLUENCE GEMS PRIVATE LIMITED",
+    "date": "24-MAR-2026",
+    "price": 22.11,
+    "quantity": 700000,
+    "security_name": "Atal Realtech Limited",
+    "symbol": "ATALREAL"
+  },
+  {
+    "action": "BUY",
+    "client_name": "JUMP TRADING FINANCIAL INDIA PRIVATE LIMITED",
+    "date": "24-MAR-2026",
+    "price": 251.87,
+    "quantity": 2601293,
+    "security_name": "BLS Intl Servs Ltd",
+    "symbol": "BLS"
+  },
+  {
+    "action": "BUY",
+    "client_name": "QE SECURITIES LLP",
+    "date": "24-MAR-2026",
+    "price": 251.13,
+    "quantity": 2348239,
+    "security_name": "BLS Intl Servs Ltd",
+    "symbol": "BLS"
+  },
+  {
+    "action": "BUY",
+    "client_name": "URVIJA RAHUL SHAH",
+    "date": "24-MAR-2026",
+    "price": 13.05,
+    "quantity": 159984,
+    "security_name": "Continental Seed Chem Ltd",
+    "symbol": "CONTI"
+  }
+]
