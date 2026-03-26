@@ -611,3 +611,35 @@ header {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
 }
+
+
+/* ── ML DECISION BADGE (Day 3) ── */
+.decision-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.decision-buy {
+    background: rgba(0, 230, 118, 0.15);
+    border: 1px solid rgba(0, 230, 118, 0.5);
+    color: var(--green);
+}
+
+.decision-watch {
+    background: rgba(255, 214, 0, 0.12);
+    border: 1px solid rgba(255, 214, 0, 0.4);
+    color: var(--yellow);
+}
+
+.decision-avoid {
+    background: rgba(255, 23, 68, 0.12);
+    border: 1px solid rgba(255, 23, 68, 0.4);
+    color: var(--red);
+}
