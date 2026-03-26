@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ET Opportunity Radar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <div class="logo-icon">🎯</div>
+        <div class="logo-text">
+            <span>ET Opportunity Radar</span>
+            <span>AI Signal Intelligence</span>
+        </div>
+    </div>
+    <div class="header-right">
+        <div class="live-badge">
+            <div class="live-dot"></div>
+            NSE LIVE
+        </div>
+        <div class="market-time" id="market-time">--:--:-- IST</div>
+    </div>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="stat-item" style="animation-delay:0.1s">
+        <div class="stat-label">Signals Today</div>
+        <div class="stat-value" id="signals-count">47</div>
+        <div class="stat-sub">↑ 12 from yesterday</div>
+    </div>
+    <div class="stat-item" style="animation-delay:0.2s">
+        <div class="stat-label">Insider Activity</div>
+        <div class="stat-value green" id="insider-val">₹284 Cr</div>
+        <div class="stat-sub">Across 18 stocks</div>
+    </div>
+    <div class="stat-item" style="animation-delay:0.3s">
+        <div class="stat-label">Avg Accuracy</div>
+        <div class="stat-value yellow" id="accuracy-val">73%</div>
+        <div class="stat-sub">Based on 2yr backtest</div>
+    </div>
+    <div class="stat-item" style="animation-delay:0.4s">
+        <div class="stat-label">High Confidence</div>
+        <div class="stat-value" id="high-conf">12</div>
+        <div class="stat-sub">Signals above 80%</div>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- SIGNALS FEED -->
+    <div class="signals-panel">
+        <div class="panel-header">
+            <div class="panel-title">Live Signal Feed</div>
+            <div class="filter-tabs">
+                <button class="filter-tab active">All</button>
+                <button class="filter-tab">Insider</button>
+                <button class="filter-tab">Bulk Deal</button>
+                <button class="filter-tab">Promoter</button>
+            </div>
+        </div>
+
+        <div id="signal-feed">
+
+            <!-- Signal 1 -->
+            <div class="signal-card high" style="animation-delay:0.1s">
+                <div class="signal-top">
+                    <div class="signal-stock">
+                        <div class="stock-badge">TATAMOTORS</div>
+                        <div class="signal-type-tag">Promoter Buy <span class="new-badge">NEW</span></div>
+                    </div>
+                    <div class="confidence-badge">
+                        <div class="confidence-num">87%</div>
+                        <div class="confidence-label">Confidence</div>
+                    </div>
+                </div>
+                <div class="signal-message">
+                    🚨 Tata Sons purchased ₹312 Cr worth of TATAMOTORS shares today. Promoter buying of this magnitude has historically preceded an average <strong style="color:var(--green)">+38% gain</strong> within 90 days.
+                </div>
+                <div class="signal-bottom">
+                    <div class="signal-meta">
+                        <div class="meta-item">Detected: <span>14:23 IST</span></div>
+                        <div class="meta-item">Backtest: <span>23/27 accurate</span></div>
+                        <div class="meta-item">Volume: <span>4.2x avg</span></div>
+                    </div>
+                    <button class="signal-action">View Signal →</button>
+                </div>
+            </div>
+
+            <!-- Signal 2 -->
+            <div class="signal-card medium" style="animation-delay:0.2s">
+                <div class="signal-top">
+                    <div class="signal-stock">
+                        <div class="stock-badge">HDFCBANK</div>
+                        <div class="signal-type-tag">Bulk Deal</div>
+                    </div>
+                    <div class="confidence-badge">
+                        <div class="confidence-num mid">71%</div>
+                        <div class="confidence-label">Confidence</div>
+                    </div>
+                </div>
+                <div class="signal-message">
+                    📦 Mutual fund placed bulk buy order of ₹890 Cr in HDFCBANK. Institutional accumulation at this scale signals strong conviction — historically leads to <strong style="color:var(--yellow)">+22% gain</strong> over 60 days.
+                </div>
+                <div class="signal-bottom">
+                    <div class="signal-meta">
+                        <div class="meta-item">Detected: <span>13:45 IST</span></div>
+                        <div class="meta-item">Backtest: <span>18/25 accurate</span></div>
+                        <div class="meta-item">Volume: <span>2.8x avg</span></div>
+                    </div>
+                    <button class="signal-action">View Signal →</button>
+                </div>
+            </div>
+
+            <!-- Signal 3 -->
+            <div class="signal-card low" style="animation-delay:0.3s">
+                <div class="signal-top">
+                    <div class="signal-stock">
+                        <div class="stock-badge">INFY</div>
+                        <div class="signal-type-tag">Insider Trade</div>
+                    </div>
+                    <div class="confidence-badge">
+                        <div class="confidence-num">65%</div>
+                        <div class="confidence-label">Confidence</div>
+                    </div>
+                </div>
+                <div class="signal-message">
+                    👤 CFO purchased 50,000 shares of INFY at ₹1,847. C-suite insider buying before quarterly results historically signals management confidence — <strong style="color:var(--green)">+18% avg gain</strong> in 45 days.
+                </div>
+                <div class="signal-bottom">
+                    <div class="signal-meta">
+                        <div class="meta-item">Detected: <span>11:12 IST</span></div>
+                        <div class="meta-item">Backtest: <span>14/22 accurate</span></div>
+                        <div class="meta-item">Volume: <span>1.9x avg</span></div>
+                    </div>
+                    <button class="signal-action">View Signal →</button>
+                </div>
+            </div>
+
+            <!-- Signal 4 -->
+            <div class="signal-card high" style="animation-delay:0.4s">
+                <div class="signal-top">
+                    <div class="signal-stock">
+                        <div class="stock-badge">RELIANCE</div>
+                        <div class="signal-type-tag">Unusual Volume</div>
+                    </div>
+                    <div class="confidence-badge">
+                        <div class="confidence-num">79%</div>
+                        <div class="confidence-label">Confidence</div>
+                    </div>
+                </div>
+                <div class="signal-message">
+                    📊 RELIANCE trading at <strong style="color:var(--et-orange)">6.7x normal volume</strong> with no news catalyst. Historically this precedes a major announcement within 48 hours — avg move of <strong style="color:var(--green)">±15%</strong>.
+                </div>
+                <div class="signal-bottom">
+                    <div class="signal-meta">
+                        <div class="meta-item">Detected: <span>10:55 IST</span></div>
+                        <div class="meta-item">Backtest: <span>21/27 accurate</span></div>
+                        <div class="meta-item">Volume: <span>6.7x avg</span></div>
+                    </div>
+                    <button class="signal-action">View Signal →</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <!-- Search -->
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search stock...">
+        </div>
+
+        <!-- Watchlist -->
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Watchlist</div>
+
+            <div class="watchlist-item">
+                <div class="wl-left">
+                    <div class="wl-symbol">TATAMOTORS</div>
+                    <div class="wl-name">Tata Motors Ltd</div>
+                </div>
+                <div class="wl-right">
+                    <div class="wl-price" style="color:var(--text)">₹942.50</div>
+                    <div class="wl-change up">▲ +2.34%</div>
+                </div>
+            </div>
+
+            <div class="watchlist-item">
+                <div class="wl-left">
+                    <div class="wl-symbol">HDFCBANK</div>
+                    <div class="wl-name">HDFC Bank Ltd</div>
+                </div>
+                <div class="wl-right">
+                    <div class="wl-price" style="color:var(--text)">₹1,678.20</div>
+                    <div class="wl-change up">▲ +0.87%</div>
+                </div>
+            </div>
+
+            <div class="watchlist-item">
+                <div class="wl-left">
+                    <div class="wl-symbol">INFY</div>
+                    <div class="wl-name">Infosys Ltd</div>
+                </div>
+                <div class="wl-right">
+                    <div class="wl-price" style="color:var(--text)">₹1,847.00</div>
+                    <div class="wl-change down">▼ -0.43%</div>
+                </div>
+            </div>
+
+            <div class="watchlist-item">
+                <div class="wl-left">
+                    <div class="wl-symbol">RELIANCE</div>
+                    <div class="wl-name">Reliance Industries</div>
+                </div>
+                <div class="wl-right">
+                    <div class="wl-price" style="color:var(--text)">₹2,934.75</div>
+                    <div class="wl-change up">▲ +1.12%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signal Breakdown -->
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Signal Breakdown</div>
+            <div class="summary-card">
+                <div class="summary-title">Today's Signal Types</div>
+                <div class="summary-bar">
+                    <div class="bar-label">Promoter</div>
+                    <div class="bar-track"><div class="bar-fill orange" style="width:60%"></div></div>
+                    <div class="bar-val">18</div>
+                </div>
+                <div class="summary-bar">
+                    <div class="bar-label">Insider</div>
+                    <div class="bar-track"><div class="bar-fill green" style="width:40%"></div></div>
+                    <div class="bar-val">12</div>
+                </div>
+                <div class="summary-bar">
+                    <div class="bar-label">Bulk Deal</div>
+                    <div class="bar-track"><div class="bar-fill orange" style="width:30%"></div></div>
+                    <div class="bar-val">9</div>
+                </div>
+                <div class="summary-bar">
+                    <div class="bar-label">Volume</div>
+                    <div class="bar-track"><div class="bar-fill red" style="width:25%"></div></div>
+                    <div class="bar-val">8</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+    <div class="ticker-inner" id="ticker">
+        <div class="ticker-item"><span class="ticker-symbol">NIFTY 50</span><span class="ticker-price">22,847.35</span><span class="ticker-chg up">▲ +0.54%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">SENSEX</span><span class="ticker-price">75,234.12</span><span class="ticker-chg up">▲ +0.48%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">TATAMOTORS</span><span class="ticker-price">₹942.50</span><span class="ticker-chg up">▲ +2.34%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">HDFCBANK</span><span class="ticker-price">₹1,678.20</span><span class="ticker-chg up">▲ +0.87%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">INFY</span><span class="ticker-price">₹1,847.00</span><span class="ticker-chg down">▼ -0.43%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">RELIANCE</span><span class="ticker-price">₹2,934.75</span><span class="ticker-chg up">▲ +1.12%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">TCS</span><span class="ticker-price">₹3,456.80</span><span class="ticker-chg up">▲ +0.23%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">WIPRO</span><span class="ticker-price">₹487.30</span><span class="ticker-chg down">▼ -0.67%</span></div>
+        <!-- duplicate for seamless loop -->
+        <div class="ticker-item"><span class="ticker-symbol">NIFTY 50</span><span class="ticker-price">22,847.35</span><span class="ticker-chg up">▲ +0.54%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">SENSEX</span><span class="ticker-price">75,234.12</span><span class="ticker-chg up">▲ +0.48%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">TATAMOTORS</span><span class="ticker-price">₹942.50</span><span class="ticker-chg up">▲ +2.34%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">HDFCBANK</span><span class="ticker-price">₹1,678.20</span><span class="ticker-chg up">▲ +0.87%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">INFY</span><span class="ticker-price">₹1,847.00</span><span class="ticker-chg down">▼ -0.43%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">RELIANCE</span><span class="ticker-price">₹2,934.75</span><span class="ticker-chg up">▲ +1.12%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">TCS</span><span class="ticker-price">₹3,456.80</span><span class="ticker-chg up">▲ +0.23%</span></div>
+        <div class="ticker-item"><span class="ticker-symbol">WIPRO</span><span class="ticker-price">₹487.30</span><span class="ticker-chg down">▼ -0.67%</span></div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

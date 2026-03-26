@@ -1,0 +1,51 @@
+DATE,SYMBOL,SECURITY NAME,CLIENT NAME,BUY/SELL,QUANTITY TRADED,TRADE PRICE/ WEIGHTED. AVG. PRICE,REMARKS
+24-Sep-25,HDFCBANK,HDFC Bank Ltd,ICICI Prudential MF,BUY,250000,1520.5,Block Deal
+24-Sep-25,HDFCBANK,HDFC Bank Ltd,SBI Mutual Fund,SELL,180000,1518.2,Bulk Deal
+15-Oct-25,HDFCBANK,HDFC Bank Ltd,HDFC MF,BUY,320000,1585.75,Block Deal
+15-Oct-25,HDFCBANK,HDFC Bank Ltd,Kotak MF,SELL,210000,1583.4,Bulk Deal
+12-Nov-25,HDFCBANK,HDFC Bank Ltd,Axis MF,BUY,190000,1620.1,Block Deal
+12-Nov-25,HDFCBANK,HDFC Bank Ltd,UTI MF,SELL,150000,1618.9,Bulk Deal
+25-Dec-25,HDFCBANK,HDFC Bank Ltd,Aditya Birla SL MF,BUY,280000,1685.3,Block Deal
+25-Dec-25,HDFCBANK,HDFC Bank Ltd,DSP MF,SELL,200000,1683.5,Bulk Deal
+24-Mar-26,HDFCBANK,HDFC Bank Ltd,ICICI Prudential MF,BUY,250000,1650.25,Block Deal
+24-Mar-26,HDFCBANK,HDFC Bank Ltd,SBI Mutual Fund,SELL,180000,1648.75,Bulk Deal
+25-Sep-25,ICICIBANK,ICICI Bank Ltd,HDFC MF,BUY,315000,1050.8,Block Deal
+25-Sep-25,ICICIBANK,ICICI Bank Ltd,Axis MF,SELL,220000,1048.2,Bulk Deal
+18-Oct-25,ICICIBANK,ICICI Bank Ltd,SBI MF,BUY,285000,1085.6,Block Deal
+18-Oct-25,ICICIBANK,ICICI Bank Ltd,Kotak MF,SELL,195000,1083.4,Bulk Deal
+10-Nov-25,ICICIBANK,ICICI Bank Ltd,UTI MF,BUY,340000,1102.75,Block Deal
+10-Nov-25,ICICIBANK,ICICI Bank Ltd,Aditya Birla SL MF,SELL,260000,1100.9,Bulk Deal
+20-Dec-25,ICICIBANK,ICICI Bank Ltd,DSP MF,BUY,275000,1150.45,Block Deal
+20-Dec-25,ICICIBANK,ICICI Bank Ltd,HDFC MF,SELL,210000,1148.7,Bulk Deal
+25-Mar-26,ICICIBANK,ICICI Bank Ltd,HDFC MF,BUY,315000,1125.4,Block Deal
+25-Mar-26,ICICIBANK,ICICI Bank Ltd,Axis MF,SELL,220000,1123.1,Bulk Deal
+20-Sep-25,INFY,Infosys Ltd,Reliance MF,BUY,175000,1720.4,Block Deal
+20-Sep-25,INFY,Infosys Ltd,Kotak MF,SELL,120000,1718.9,Bulk Deal
+05-Oct-25,INFY,Infosys Ltd,HDFC MF,BUY,210000,1765.2,Block Deal
+05-Oct-25,INFY,Infosys Ltd,SBI MF,SELL,165000,1763.5,Bulk Deal
+22-Nov-25,INFY,Infosys Ltd,Axis MF,BUY,190000,1802.8,Block Deal
+22-Nov-25,INFY,Infosys Ltd,UTI MF,SELL,140000,1801.1,Bulk Deal
+15-Jan-26,INFY,Infosys Ltd,Aditya Birla SL MF,BUY,230000,1825.6,Block Deal
+15-Jan-26,INFY,Infosys Ltd,DSP MF,SELL,185000,1824.2,Bulk Deal
+24-Mar-26,INFY,Infosys Ltd,Reliance MF,BUY,175000,1850.6,Block Deal
+24-Mar-26,INFY,Infosys Ltd,Kotak MF,SELL,120000,1848.9,Bulk Deal
+28-Sep-25,RELIANCE,Reliance Industries Ltd,Tata MF,BUY,450000,2650.9,Block Deal
+28-Sep-25,RELIANCE,Reliance Industries Ltd,Aditya Birla SL MF,SELL,310000,2648.4,Bulk Deal
+12-Oct-25,RELIANCE,Reliance Industries Ltd,SBI MF,BUY,380000,2705.75,Block Deal
+12-Oct-25,RELIANCE,Reliance Industries Ltd,HDFC MF,SELL,290000,2703.2,Bulk Deal
+08-Nov-25,RELIANCE,Reliance Industries Ltd,Kotak MF,BUY,520000,2750.4,Block Deal
+08-Nov-25,RELIANCE,Reliance Industries Ltd,Axis MF,SELL,400000,2748.8,Bulk Deal
+18-Dec-25,RELIANCE,Reliance Industries Ltd,UTI MF,BUY,410000,2802.15,Block Deal
+18-Dec-25,RELIANCE,Reliance Industries Ltd,DSP MF,SELL,325000,2800.5,Bulk Deal
+25-Mar-26,RELIANCE,Reliance Industries Ltd,Tata MF,BUY,450000,2850.75,Block Deal
+25-Mar-26,RELIANCE,Reliance Industries Ltd,Aditya Birla SL MF,SELL,310000,2847.2,Bulk Deal
+30-Sep-25,TCS,Tata Consultancy Services,UTI MF,BUY,280000,3550.3,Block Deal
+30-Sep-25,TCS,Tata Consultancy Services,DSP MF,SELL,190000,3548.7,Bulk Deal
+25-Oct-25,TCS,Tata Consultancy Services,HDFC MF,BUY,315000,3620.85,Block Deal
+25-Oct-25,TCS,Tata Consultancy Services,SBI MF,SELL,240000,3618.4,Bulk Deal
+15-Nov-25,TCS,Tata Consultancy Services,Kotak MF,BUY,265000,3685.2,Block Deal
+15-Nov-25,TCS,Tata Consultancy Services,Axis MF,SELL,200000,3683.5,Block Deal
+10-Jan-26,TCS,Tata Consultancy Services,Aditya Birla SL MF,BUY,300000,3750.75,Block Deal
+10-Jan-26,TCS,Tata Consultancy Services,Reliance MF,SELL,220000,3749.1,Block Deal
+24-Mar-26,TCS,Tata Consultancy Services,UTI MF,BUY,280000,3850.15,Block Deal
+24-Mar-26,TCS,Tata Consultancy Services,DSP MF,SELL,190000,3848.5,Bulk Deal
