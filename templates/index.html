@@ -1,288 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ET Opportunity Radar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- LightweightCharts for candlestick -->
+    <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header>
-    <div class="logo">
-        <div class="logo-icon">🎯</div>
-        <div class="logo-text">
-            <span>ET Opportunity Radar</span>
-            <span>AI Signal Intelligence</span>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <img src="data:image/png;base64,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"
+                alt="ET Signals"
+                style="height:52px;width:auto;object-fit:contain;animation:pulse-icon 2s ease-in-out infinite;border-radius:6px;">
         </div>
-    </div>
-    <div class="header-right">
-        <div class="live-badge">
-            <div class="live-dot"></div>
-            NSE LIVE
+        <div class="header-right">
+            <div class="live-badge">
+                <div class="live-dot"></div>
+                NSE LIVE
+            </div>
+            <div class="market-status" id="market-status-badge">OPEN</div>
+            <div class="market-time" id="market-time">--:--:-- IST</div>
         </div>
-        <div class="market-time" id="market-time">--:--:-- IST</div>
-    </div>
-</header>
+    </header>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-    <div class="stat-item" style="animation-delay:0.1s">
-        <div class="stat-label">Signals Today</div>
-        <div class="stat-value" id="signals-count">47</div>
-        <div class="stat-sub">↑ 12 from yesterday</div>
-    </div>
-    <div class="stat-item" style="animation-delay:0.2s">
-        <div class="stat-label">Insider Activity</div>
-        <div class="stat-value green" id="insider-val">₹284 Cr</div>
-        <div class="stat-sub">Across 18 stocks</div>
-    </div>
-    <div class="stat-item" style="animation-delay:0.3s">
-        <div class="stat-label">Avg Accuracy</div>
-        <div class="stat-value yellow" id="accuracy-val">73%</div>
-        <div class="stat-sub">Based on 2yr backtest</div>
-    </div>
-    <div class="stat-item" style="animation-delay:0.4s">
-        <div class="stat-label">High Confidence</div>
-        <div class="stat-value" id="high-conf">12</div>
-        <div class="stat-sub">Signals above 80%</div>
-    </div>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-    <!-- SIGNALS FEED -->
-    <div class="signals-panel">
-        <div class="panel-header">
-            <div class="panel-title">Live Signal Feed</div>
-            <div class="filter-tabs">
-                <button class="filter-tab active">All</button>
-                <button class="filter-tab">Insider</button>
-                <button class="filter-tab">Bulk Deal</button>
-                <button class="filter-tab">Promoter</button>
-            </div>
+    <!-- STATS BAR — clickable -->
+    <div class="stats-bar">
+        <div class="stat-item" style="animation-delay:0.1s" onclick="openSignalsTodayModal()">
+            <div class="stat-label">Signals Today</div>
+            <div class="stat-value" id="signals-count">47</div>
+            <div class="stat-sub" id="signals-sub">↑ 12 from yesterday</div>
         </div>
-
-        <div id="signal-feed">
-
-            <!-- Signal 1 -->
-            <div class="signal-card high" style="animation-delay:0.1s">
-                <div class="signal-top">
-                    <div class="signal-stock">
-                        <div class="stock-badge">TATAMOTORS</div>
-                        <div class="signal-type-tag">Promoter Buy <span class="new-badge">NEW</span></div>
-                    </div>
-                    <div class="confidence-badge">
-                        <div class="confidence-num">87%</div>
-                        <div class="confidence-label">Confidence</div>
-                    </div>
-                </div>
-                <div class="signal-message">
-                    🚨 Tata Sons purchased ₹312 Cr worth of TATAMOTORS shares today. Promoter buying of this magnitude has historically preceded an average <strong style="color:var(--green)">+38% gain</strong> within 90 days.
-                </div>
-                <div class="signal-bottom">
-                    <div class="signal-meta">
-                        <div class="meta-item">Detected: <span>14:23 IST</span></div>
-                        <div class="meta-item">Backtest: <span>23/27 accurate</span></div>
-                        <div class="meta-item">Volume: <span>4.2x avg</span></div>
-                    </div>
-                    <button class="signal-action">View Signal →</button>
-                </div>
-            </div>
-
-            <!-- Signal 2 -->
-            <div class="signal-card medium" style="animation-delay:0.2s">
-                <div class="signal-top">
-                    <div class="signal-stock">
-                        <div class="stock-badge">HDFCBANK</div>
-                        <div class="signal-type-tag">Bulk Deal</div>
-                    </div>
-                    <div class="confidence-badge">
-                        <div class="confidence-num mid">71%</div>
-                        <div class="confidence-label">Confidence</div>
-                    </div>
-                </div>
-                <div class="signal-message">
-                    📦 Mutual fund placed bulk buy order of ₹890 Cr in HDFCBANK. Institutional accumulation at this scale signals strong conviction — historically leads to <strong style="color:var(--yellow)">+22% gain</strong> over 60 days.
-                </div>
-                <div class="signal-bottom">
-                    <div class="signal-meta">
-                        <div class="meta-item">Detected: <span>13:45 IST</span></div>
-                        <div class="meta-item">Backtest: <span>18/25 accurate</span></div>
-                        <div class="meta-item">Volume: <span>2.8x avg</span></div>
-                    </div>
-                    <button class="signal-action">View Signal →</button>
-                </div>
-            </div>
-
-            <!-- Signal 3 -->
-            <div class="signal-card low" style="animation-delay:0.3s">
-                <div class="signal-top">
-                    <div class="signal-stock">
-                        <div class="stock-badge">INFY</div>
-                        <div class="signal-type-tag">Insider Trade</div>
-                    </div>
-                    <div class="confidence-badge">
-                        <div class="confidence-num">65%</div>
-                        <div class="confidence-label">Confidence</div>
-                    </div>
-                </div>
-                <div class="signal-message">
-                    👤 CFO purchased 50,000 shares of INFY at ₹1,847. C-suite insider buying before quarterly results historically signals management confidence — <strong style="color:var(--green)">+18% avg gain</strong> in 45 days.
-                </div>
-                <div class="signal-bottom">
-                    <div class="signal-meta">
-                        <div class="meta-item">Detected: <span>11:12 IST</span></div>
-                        <div class="meta-item">Backtest: <span>14/22 accurate</span></div>
-                        <div class="meta-item">Volume: <span>1.9x avg</span></div>
-                    </div>
-                    <button class="signal-action">View Signal →</button>
-                </div>
-            </div>
-
-            <!-- Signal 4 -->
-            <div class="signal-card high" style="animation-delay:0.4s">
-                <div class="signal-top">
-                    <div class="signal-stock">
-                        <div class="stock-badge">RELIANCE</div>
-                        <div class="signal-type-tag">Unusual Volume</div>
-                    </div>
-                    <div class="confidence-badge">
-                        <div class="confidence-num">79%</div>
-                        <div class="confidence-label">Confidence</div>
-                    </div>
-                </div>
-                <div class="signal-message">
-                    📊 RELIANCE trading at <strong style="color:var(--et-orange)">6.7x normal volume</strong> with no news catalyst. Historically this precedes a major announcement within 48 hours — avg move of <strong style="color:var(--green)">±15%</strong>.
-                </div>
-                <div class="signal-bottom">
-                    <div class="signal-meta">
-                        <div class="meta-item">Detected: <span>10:55 IST</span></div>
-                        <div class="meta-item">Backtest: <span>21/27 accurate</span></div>
-                        <div class="meta-item">Volume: <span>6.7x avg</span></div>
-                    </div>
-                    <button class="signal-action">View Signal →</button>
-                </div>
-            </div>
-
+        <div class="stat-item" style="animation-delay:0.2s" onclick="openAccordionModal('insider')">
+            <div class="stat-label">Insider Activity</div>
+            <div class="stat-value green" id="insider-val">₹284 Cr</div>
+            <div class="stat-sub" id="insider-sub">Across 18 stocks</div>
+        </div>
+        <div class="stat-item" style="animation-delay:0.3s">
+            <div class="stat-label">Avg Accuracy</div>
+            <div class="stat-value yellow" id="accuracy-val">73%</div>
+            <div class="stat-sub">Based on 2yr backtest</div>
+        </div>
+        <div class="stat-item" style="animation-delay:0.4s">
+            <div class="stat-label">High Confidence</div>
+            <div class="stat-value" id="high-conf">12</div>
+            <div class="stat-sub">Signals above 80%</div>
         </div>
     </div>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
+    <!-- MAIN -->
+    <div class="main">
 
-        <!-- Search -->
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" placeholder="Search stock...">
-        </div>
-
-        <!-- Watchlist -->
-        <div class="sidebar-section">
-            <div class="sidebar-section-title">Watchlist</div>
-
-            <div class="watchlist-item">
-                <div class="wl-left">
-                    <div class="wl-symbol">TATAMOTORS</div>
-                    <div class="wl-name">Tata Motors Ltd</div>
-                </div>
-                <div class="wl-right">
-                    <div class="wl-price" style="color:var(--text)">₹942.50</div>
-                    <div class="wl-change up">▲ +2.34%</div>
+        <!-- SIGNALS FEED -->
+        <div class="signals-panel">
+            <div class="panel-header">
+                <div class="panel-title">Live Signal Feed</div>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterSignals('all',this)">All</button>
+                    <button class="filter-tab" onclick="filterSignals('insider',this)">Insider</button>
+                    <button class="filter-tab" onclick="filterSignals('bulk',this)">Bulk Deal</button>
+                    <button class="filter-tab" onclick="filterSignals('promoter',this)">Promoter</button>
                 </div>
             </div>
 
-            <div class="watchlist-item">
-                <div class="wl-left">
-                    <div class="wl-symbol">HDFCBANK</div>
-                    <div class="wl-name">HDFC Bank Ltd</div>
-                </div>
-                <div class="wl-right">
-                    <div class="wl-price" style="color:var(--text)">₹1,678.20</div>
-                    <div class="wl-change up">▲ +0.87%</div>
-                </div>
-            </div>
-
-            <div class="watchlist-item">
-                <div class="wl-left">
-                    <div class="wl-symbol">INFY</div>
-                    <div class="wl-name">Infosys Ltd</div>
-                </div>
-                <div class="wl-right">
-                    <div class="wl-price" style="color:var(--text)">₹1,847.00</div>
-                    <div class="wl-change down">▼ -0.43%</div>
-                </div>
-            </div>
-
-            <div class="watchlist-item">
-                <div class="wl-left">
-                    <div class="wl-symbol">RELIANCE</div>
-                    <div class="wl-name">Reliance Industries</div>
-                </div>
-                <div class="wl-right">
-                    <div class="wl-price" style="color:var(--text)">₹2,934.75</div>
-                    <div class="wl-change up">▲ +1.12%</div>
-                </div>
+            <div id="signal-feed">
+                <!-- Injected by JS -->
             </div>
         </div>
 
-        <!-- Signal Breakdown -->
-        <div class="sidebar-section">
-            <div class="sidebar-section-title">Signal Breakdown</div>
-            <div class="summary-card">
-                <div class="summary-title">Today's Signal Types</div>
-                <div class="summary-bar">
-                    <div class="bar-label">Promoter</div>
-                    <div class="bar-track"><div class="bar-fill orange" style="width:60%"></div></div>
-                    <div class="bar-val">18</div>
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="watchlist-search" placeholder="Search stock..."
+                    oninput="filterWatchlist(this.value)">
+            </div>
+
+            <!-- Watchlist -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Watchlist <span
+                        style="color:var(--text-dim);font-size:9px;margin-left:8px">LIVE</span></div>
+                <div id="watchlist-container">
+                    <!-- Injected by JS -->
                 </div>
-                <div class="summary-bar">
-                    <div class="bar-label">Insider</div>
-                    <div class="bar-track"><div class="bar-fill green" style="width:40%"></div></div>
-                    <div class="bar-val">12</div>
-                </div>
-                <div class="summary-bar">
-                    <div class="bar-label">Bulk Deal</div>
-                    <div class="bar-track"><div class="bar-fill orange" style="width:30%"></div></div>
-                    <div class="bar-val">9</div>
-                </div>
-                <div class="summary-bar">
-                    <div class="bar-label">Volume</div>
-                    <div class="bar-track"><div class="bar-fill red" style="width:25%"></div></div>
-                    <div class="bar-val">8</div>
+            </div>
+
+            <!-- Signal Breakdown -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Signal Breakdown</div>
+                <div class="summary-card">
+                    <div class="summary-title">Today's Signal Types</div>
+                    <div class="summary-bar">
+                        <div class="bar-label">Promoter</div>
+                        <div class="bar-track">
+                            <div class="bar-fill orange" id="bar-promoter" style="width:0%"></div>
+                        </div>
+                        <div class="bar-val" id="val-promoter">18</div>
+                    </div>
+                    <div class="summary-bar">
+                        <div class="bar-label">Insider</div>
+                        <div class="bar-track">
+                            <div class="bar-fill green" id="bar-insider" style="width:0%"></div>
+                        </div>
+                        <div class="bar-val" id="val-insider">12</div>
+                    </div>
+                    <div class="summary-bar">
+                        <div class="bar-label">Bulk Deal</div>
+                        <div class="bar-track">
+                            <div class="bar-fill orange" id="bar-bulk" style="width:0%"></div>
+                        </div>
+                        <div class="bar-val" id="val-bulk">9</div>
+                    </div>
+                    <div class="summary-bar">
+                        <div class="bar-label">Volume</div>
+                        <div class="bar-track">
+                            <div class="bar-fill red" id="bar-volume" style="width:0%"></div>
+                        </div>
+                        <div class="bar-val" id="val-volume">8</div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
 
-<!-- TICKER -->
-<div class="ticker-bar">
-    <div class="ticker-inner" id="ticker">
-        <div class="ticker-item"><span class="ticker-symbol">NIFTY 50</span><span class="ticker-price">22,847.35</span><span class="ticker-chg up">▲ +0.54%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">SENSEX</span><span class="ticker-price">75,234.12</span><span class="ticker-chg up">▲ +0.48%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">TATAMOTORS</span><span class="ticker-price">₹942.50</span><span class="ticker-chg up">▲ +2.34%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">HDFCBANK</span><span class="ticker-price">₹1,678.20</span><span class="ticker-chg up">▲ +0.87%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">INFY</span><span class="ticker-price">₹1,847.00</span><span class="ticker-chg down">▼ -0.43%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">RELIANCE</span><span class="ticker-price">₹2,934.75</span><span class="ticker-chg up">▲ +1.12%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">TCS</span><span class="ticker-price">₹3,456.80</span><span class="ticker-chg up">▲ +0.23%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">WIPRO</span><span class="ticker-price">₹487.30</span><span class="ticker-chg down">▼ -0.67%</span></div>
-        <!-- duplicate for seamless loop -->
-        <div class="ticker-item"><span class="ticker-symbol">NIFTY 50</span><span class="ticker-price">22,847.35</span><span class="ticker-chg up">▲ +0.54%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">SENSEX</span><span class="ticker-price">75,234.12</span><span class="ticker-chg up">▲ +0.48%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">TATAMOTORS</span><span class="ticker-price">₹942.50</span><span class="ticker-chg up">▲ +2.34%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">HDFCBANK</span><span class="ticker-price">₹1,678.20</span><span class="ticker-chg up">▲ +0.87%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">INFY</span><span class="ticker-price">₹1,847.00</span><span class="ticker-chg down">▼ -0.43%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">RELIANCE</span><span class="ticker-price">₹2,934.75</span><span class="ticker-chg up">▲ +1.12%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">TCS</span><span class="ticker-price">₹3,456.80</span><span class="ticker-chg up">▲ +0.23%</span></div>
-        <div class="ticker-item"><span class="ticker-symbol">WIPRO</span><span class="ticker-price">₹487.30</span><span class="ticker-chg down">▼ -0.67%</span></div>
+    <!-- TICKER -->
+    <div class="ticker-bar">
+        <div class="ticker-inner" id="ticker"></div>
     </div>
-</div>
 
-<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <!-- ══════════════════════════════════════════
+     MODAL 1: Signals Today (candlestick)
+══════════════════════════════════════════ -->
+    <div class="modal-overlay" id="signals-today-modal">
+        <div class="modal" style="max-width:920px">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span id="modal-stock-badge" class="stock-badge">NIFTY 50</span>
+                    Signals Today — Chart View
+                </div>
+                <button class="modal-close" onclick="closeModal('signals-today-modal')">×</button>
+            </div>
+            <div class="signals-today-tabs">
+                <div class="signals-today-tab active" onclick="switchSignalsTab('nifty',this)">NIFTY 50</div>
+                <div class="signals-today-tab" onclick="switchSignalsTab('sensex',this)">SENSEX</div>
+                <div class="signals-today-tab" onclick="switchSignalsTab('hdfcbank',this)">HDFCBANK</div>
+                <div class="signals-today-tab" onclick="switchSignalsTab('infy',this)">INFY</div>
+                <div class="signals-today-tab" onclick="switchSignalsTab('reliance',this)">RELIANCE</div>
+                <div class="signals-today-tab" onclick="switchSignalsTab('tcs',this)">TCS</div>
+                <div class="signals-today-tab" onclick="switchSignalsTab('icicibank',this)">ICICIBANK</div>
+            </div>
+            <div class="signals-today-content">
+                <div
+                    style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span id="chart-current-price"
+                            style="font-size:24px;font-weight:800;font-family:'Space Mono',monospace;color:var(--et-orange)">—</span>
+                        <span id="chart-change-badge"
+                            style="font-size:13px;font-family:'Space Mono',monospace;padding:4px 10px;border-radius:8px;">—</span>
+                    </div>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" onclick="setChartTF('1D',this)">1D</button>
+                        <button class="chart-btn" onclick="setChartTF('1W',this)">1W</button>
+                        <button class="chart-btn" onclick="setChartTF('1M',this)">1M</button>
+                        <button class="chart-btn" onclick="setChartTF('3M',this)">3M</button>
+                    </div>
+                </div>
+                <div id="candle-chart"
+                    style="width:100%;height:340px;border-radius:10px;overflow:hidden;background:var(--surface2);">
+                </div>
+                <div class="modal-stats-row" id="chart-stats-row" style="margin-top:16px;">
+                    <div class="modal-stat">
+                        <div class="modal-stat-label">Open</div>
+                        <div class="modal-stat-value" id="cs-open" style="color:var(--text)">—</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-label">High</div>
+                        <div class="modal-stat-value" id="cs-high" style="color:var(--green)">—</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-label">Low</div>
+                        <div class="modal-stat-value" id="cs-low" style="color:var(--red)">—</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-label">Volume</div>
+                        <div class="modal-stat-value" id="cs-vol" style="color:var(--yellow)">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+     MODAL 2: Signal Card Detail (with chart)
+══════════════════════════════════════════ -->
+    <div class="modal-overlay" id="signal-detail-modal">
+        <div class="modal" style="max-width:860px">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span id="detail-stock-badge" class="stock-badge">—</span>
+                    <span id="detail-signal-type" style="color:var(--text-dim);font-size:13px">—</span>
+                </div>
+                <button class="modal-close" onclick="closeModal('signal-detail-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="chart-controls">
+                    <button class="chart-btn active" onclick="setDetailTF('1D',this)">1D</button>
+                    <button class="chart-btn" onclick="setDetailTF('1W',this)">1W</button>
+                    <button class="chart-btn" onclick="setDetailTF('1M',this)">1M</button>
+                </div>
+                <div id="detail-candle-chart"
+                    style="width:100%;height:300px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
+                </div>
+                <div class="modal-stats-row" style="margin-top:16px;">
+                    <div class="modal-stat">
+                        <div class="modal-stat-label">Current Price</div>
+                        <div class="modal-stat-value" id="detail-price" style="color:var(--et-orange)">—</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-label">Change</div>
+                        <div class="modal-stat-value" id="detail-change">—</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-label">Volume</div>
+                        <div class="modal-stat-value" id="detail-vol" style="color:var(--yellow)">—</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-label">Confidence</div>
+                        <div class="modal-stat-value" id="detail-conf" style="color:var(--green)">—</div>
+                    </div>
+                </div>
+                <div class="signal-detail-section">
+                    <h3>Signal Details</h3>
+                    <div class="signal-detail-grid" id="detail-info-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+     MODAL 3: Accordion (Insider/Bulk/Promoter)
+══════════════════════════════════════════ -->
+    <div class="modal-overlay" id="accordion-modal">
+        <div class="modal" style="max-width:860px">
+            <div class="modal-header">
+                <div class="modal-title">📋 Live Deal Activity — <span id="acc-modal-time"
+                        style="color:var(--text-dim);font-size:13px"></span></div>
+                <button class="modal-close" onclick="closeModal('accordion-modal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;" id="acc-market-badges"></div>
+                <!-- Insider -->
+                <div class="accordion-item" id="acc-insider">
+                    <div class="accordion-header" onclick="toggleAccordion('acc-insider')">
+                        <div class="accordion-header-left">
+                            <span style="font-size:18px">👤</span>
+                            <span class="accordion-header-title">Insider Trades</span>
+                            <span class="accordion-count" id="acc-count-insider">12</span>
+                        </div>
+                        <span class="accordion-arrow">▾</span>
+                    </div>
+                    <div class="accordion-body">
+                        <table class="accordion-table" id="acc-table-insider">
+                            <thead>
+                                <tr>
+                                    <th>Stock</th>
+                                    <th>Person</th>
+                                    <th>Type</th>
+                                    <th>Qty</th>
+                                    <th>Value</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Bulk -->
+                <div class="accordion-item" id="acc-bulk">
+                    <div class="accordion-header" onclick="toggleAccordion('acc-bulk')">
+                        <div class="accordion-header-left">
+                            <span style="font-size:18px">📦</span>
+                            <span class="accordion-header-title">Bulk Deals</span>
+                            <span class="accordion-count" id="acc-count-bulk">9</span>
+                        </div>
+                        <span class="accordion-arrow">▾</span>
+                    </div>
+                    <div class="accordion-body">
+                        <table class="accordion-table" id="acc-table-bulk">
+                            <thead>
+                                <tr>
+                                    <th>Stock</th>
+                                    <th>Client</th>
+                                    <th>Type</th>
+                                    <th>Qty (Lakh)</th>
+                                    <th>Value (Cr)</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Promoter -->
+                <div class="accordion-item" id="acc-promoter">
+                    <div class="accordion-header" onclick="toggleAccordion('acc-promoter')">
+                        <div class="accordion-header-left">
+                            <span style="font-size:18px">🏢</span>
+                            <span class="accordion-header-title">Promoter Activity</span>
+                            <span class="accordion-count" id="acc-count-promoter">18</span>
+                        </div>
+                        <span class="accordion-arrow">▾</span>
+                    </div>
+                    <div class="accordion-body">
+                        <table class="accordion-table" id="acc-table-promoter">
+                            <thead>
+                                <tr>
+                                    <th>Stock</th>
+                                    <th>Promoter</th>
+                                    <th>Action</th>
+                                    <th>Stake Δ</th>
+                                    <th>Value (Cr)</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 </body>
+
 </html>
