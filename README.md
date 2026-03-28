@@ -78,8 +78,10 @@ ET-Opportunity-Radar/
 ├── templates/
 │   └── index.html          # Frontend HTML (Jinja2 template)
 ├── static/
-│   ├── style.css           # Stylesheet
-│   └── script.js           # Frontend JavaScript
+|   ├──css
+│   |   ├── style.css        # Stylesheet
+│   └── js
+|       ├── dashboard.js     # Frontend JavaScript
 ├── models/
 │   ├── data_fetcher.py     # Fetches NSE market data
 │   ├── signals.py          # SignalDetector class
@@ -99,7 +101,7 @@ ET-Opportunity-Radar/
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/your-team/ET-Opportunity-Radar.git
+git clone https://github.com/ArpitaSurve/ET-Opportunity-Radar.git
 cd ET-Opportunity-Radar
 ```
 
