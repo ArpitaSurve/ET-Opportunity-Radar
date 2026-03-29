@@ -23,7 +23,7 @@ ml = MLClassifier()
 def home():
     return render_template('index.html')
 
-
+# Fetch live market data and generate signals for top 5 NSE stocks
 @app.route('/api/signals')
 def get_live_signals():
     market_data = fetch_market_data()
