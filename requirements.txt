@@ -2,3 +2,4 @@ yfinance
 nsepy 
 pandas
 flask
+pip freeze > requirements.txt
